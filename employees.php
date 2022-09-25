@@ -50,7 +50,7 @@
                         <button  type="submit" class="btn btn-lg btn-primary" style="color:white;">Create Employee</button>
                     </form>                                
                     <?php if (isset($_SESSION['message'])) { ?>
-                        <div class="alert alert-<?= $_SESSION['message_type']; ?> alert-dismissible fade show" role="alert">
+                        <div class="alert alert-<?= $_SESSION['message_type']; ?> alert-dismissible fade show mt-3" role="alert">
                             <?= $_SESSION['message'] ?>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>

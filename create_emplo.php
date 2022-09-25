@@ -23,9 +23,7 @@ if (isset($_POST['create'])) {
                 exit();
             }
         }
-        mysqli_stmt_close($stmt);
-        
-
+        mysqli_stmt_close($stmt);       
     } else {
 
         $_SESSION['message'] = 'Failed! Please write the Name Last Name and set Project!';
@@ -75,7 +73,7 @@ if (isset($_POST['create'])) {
                         </select>
                     </div> 
                         <div class="text-center gap-2">
-                            <input type="submit" class="btn btn-primary mt-3  btn-block" name="create" value="Create employee">
+                            <input type="submit" class="btn btn-primary mt-3  btn-block" name="create" value="Create">
                             <button onclick="history.back()" type="button" class="btn btn-secondary mt-3">Back</button>
                             <?php if (isset($_SESSION['message'])) { ?>
                                 <div class="alert alert-<?= $_SESSION['message_type']; ?> alert-dismissible fade show mt-3" style="width=180vw;" role="alert">
