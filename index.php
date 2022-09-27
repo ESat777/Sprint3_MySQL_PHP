@@ -5,21 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-          crossorigin="anonymous">
-    <?php include 'navbar.php';?>
+          crossorigin="anonymous">   
     <title>DBM</title>
   </head>
-  <body style="background-color:#beeef9; height:100%;">
-       <div class="container p-4">
+  <body>
+       <?php include 'navbar.php';?>
+       <div class="container p-4" style=" min-height:80.7vh;">
          <div class="row"  style="margin-left: auto; margin-right: auto;">
             <div class="col-md-10">
                 <table class="table table-info table-striped table-bordered border-dark">
                     <thead>
                         <tr>
-                        <th scope="col" style="width: 5%;" >Id</th>
                         <th scope="col" style="width: 20%;">Project </th>
                         <th scope="col" style="width: 50%;">Employees</th>
-                        <th scope="col" style="width: 20%;">Action</th>     
+                        <th scope="col" style="width: 20%; text-align:center">Action</th>     
                         </tr>
                     </thead>
                     <tbody>
@@ -32,11 +31,10 @@
                                 $result_projects = mysqli_query($conn, $sql);
                                 while ($row = mysqli_fetch_array($result_projects)) { ?>
                                 <tr>
-                                    <td><?php echo $row['id'] ?></td> 
                                     <td><?php echo $row['ProjectName'] ?></td>
                                     <td><?php echo $row['combinedEmp'] ?></td>
-                                    <td>
-                                        <a href="update_project.php?id=<?php echo $row['id']?>" class="btn btn-secondary">Update</a>                         
+                                    <td style="text-align:center">
+                                        <a href="update_project.php?id=<?php echo $row['id']?>" class="btn btn-warning">Update</a>                         
                                         <a href="delete_project.php?id=<?php echo $row['id']?>" class="btn btn-danger">Delete</a>                                
                                     </td>
                                 </tr>

@@ -1,6 +1,17 @@
 <?php
 
-include("db.php");
+include 'db.php';
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    
+    $sql1 = "SELECT * FROM employees WHERE id = $id";
+    $result1 = mysqli_query($conn, $sql1);
+    if (mysqli_num_rows($result1) == 1) {
+        $row = mysqli_fetch_array($result1);
+        $firstname = $row['firstName'];
+        $lastname = $row['lastName'];
+    }
+} 
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -11,15 +22,13 @@ if (isset($_GET['id'])) {
         $row = mysqli_fetch_array($result1);
         $firstname = $row['firstName'];
         $lastname = $row['lastName'];
-        $projectname = $row['project'];
     }
 } 
-
 if (isset($_POST['submit'])) {
     $id = $_GET['id'];
     $firstname = $_POST['firstName'];
     $lastname = $_POST['lastName'];
-    $projectname = $row['project'];
+    
    
     if (empty($_POST['ProjectName'])) {
         
@@ -28,9 +37,8 @@ if (isset($_POST['submit'])) {
         if (!$result){
             die("Query filed");
         }
-
         $_SESSION['message'] = 'Updated Successfuly';
-        $_SESSION['message_type'] = 'warning';
+        $_SESSION['message_type'] = 'success';
         header("location: employees.php");
         exit();
         
@@ -43,14 +51,12 @@ if (isset($_POST['submit'])) {
         }
 
         $_SESSION['message'] = 'Updated Successfuly';
-        $_SESSION['message_type'] = 'warning';
+        $_SESSION['message_type'] = 'success';
         header("location: employees.php"); 
         exit();
     }           
 } 
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,7 +67,7 @@ if (isset($_POST['submit'])) {
           rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
     <?php include 'navbar.php';?>
-    <title>Document</title>
+    <title>DBM</title>
 </head>
 <body>
 <div class="container p-4 d-flex justify-content-lg-center">
@@ -78,9 +84,9 @@ if (isset($_POST['submit'])) {
                             <input type="text" name="lastName" value="<?php echo $lastname; ?>" class="form-control" placeholder="* last name" autofocus>
                         </div>
                         <div  class=" mt-4 text-center">
-                        <label for="ProjectName" style="color:white; font-weight: 700; font-size:20px">* Set project:</label><br>
+                        <label for="ProjectName" style="color:white; font-weight: 700; font-size:25px">Project</label><br>
                         <select name="ProjectName"  style="min-width:37vw ;">
-                            <option value="0"  class="mt-5"><?php echo $projectname; ?></option>
+                            <option value="0"  class="mt-5"></option>
                             
                             <?php
                                 $sql = 'SELECT * FROM projects';

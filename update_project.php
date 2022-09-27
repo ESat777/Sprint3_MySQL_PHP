@@ -41,8 +41,8 @@ if (isset($_POST['update'])) {
                         <div class="card card-body bg-info" style="min-width:40vw;">
                             <form action="" method="POST" class="text-center">
                                 <div class="form-group mb-3">
-                                    <label style="color: white;"><h3><strong>Update project</strong></h3></label>
-                                    <input type="text" name="ProjectName" value="<?php echo $projectname; ?>" class="form-control" placeholder="Update project">
+                                    <label style="color: white;"><h3><strong>Rename project</strong></h3></label>
+                                    <input type="text" name="ProjectName" value="<?php echo $projectname; ?>" class="form-control" placeholder="Rename project">
                                 </div>
                                 <div class=" gap-2">
                                     <button class="btn btn-primary mt-3" name="update">Update</button>
