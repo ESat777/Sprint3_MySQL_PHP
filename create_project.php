@@ -8,6 +8,10 @@ if (isset($_POST['ProjectName'])) {
         $projectname = ($_POST['ProjectName']);
 
         $sql = "INSERT INTO projects (ProjectName) VALUES (?)";
+        mysqli_report(MYSQLI_REPORT_OFF);
+        $_SESSION['message'] = 'Write the unique name of the project!';
+        $_SESSION['message_type'] = 'danger';
+        header("location: create_project.php"); 
 
         if($stmt = mysqli_prepare($conn, $sql)){
             mysqli_stmt_bind_param($stmt, "s", $param_name);
@@ -20,10 +24,10 @@ if (isset($_POST['ProjectName'])) {
                 exit();
             }
         }
+        exit();
         mysqli_stmt_close($stmt);
-
     } else {
-        $_SESSION['message'] = 'Failed! Write the name of the project!';
+        $_SESSION['message'] = 'Write the name of the project!';
         $_SESSION['message_type'] = 'danger';
         header("location: create_project.php");
         exit();
@@ -38,11 +42,11 @@ if (isset($_POST['ProjectName'])) {
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-          crossorigin="anonymous">
-    <?php include 'navbar.php';?>
+          crossorigin="anonymous">   
     <title>DBM</title>
   </head>
     <body>
+        <?php include 'navbar.php';?>
         <div class="container p-4 d-flex justify-content-lg-center">
                 <div class="row">
                     <div class="col-lg-12">                
@@ -56,7 +60,7 @@ if (isset($_POST['ProjectName'])) {
                                     <input type="submit" class="btn btn-primary btn-block" style="color:white ;" value="Create">
                                     <button onclick="history.back()" type="button" class="btn btn-secondary">Back</button>
                                     <?php if (isset($_SESSION['message'])) { ?>
-                                         <div class="alert alert-<?= $_SESSION['message_type']; ?> alert-dismissible fade show mt-3" style="width=180vw;"
+                                         <div class="alert alert-<?= $_SESSION['message_type']; ?> alert-dismissible fade show mt-3" 
                                               role="alert"><?= $_SESSION['message'] ?>
                                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
                                         </div>
